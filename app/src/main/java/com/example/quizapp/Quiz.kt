@@ -5,11 +5,14 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.quiz.*
+import kotlin.random.Random as Random
 
 class Quiz : AppCompatActivity(), View.OnClickListener {
 
@@ -26,7 +29,6 @@ class Quiz : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         //This call the parent constructor
         super.onCreate(savedInstanceState)
-
         mediaPlayer = MediaPlayer.create(this, R.raw.background_music)
 
         // Start playing the audio
@@ -36,6 +38,7 @@ class Quiz : AppCompatActivity(), View.OnClickListener {
         mediaPlayer.isLooping = true
         // This is used to align the xml view to this class
         setContentView(R.layout.quiz)
+
 
 
 
@@ -57,6 +60,16 @@ class Quiz : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
+
+
+
+        //val color = Color.argb(255, Random.nextInt(256), Random.nextInt(256), Random.nextInt(256))
+        //v?.setBackgroundColor(Color.RED)
+//        val RandomColor= mapOf("RED" to 1,"BLUE" to 2,"PINK" to 3, "YELLOW" to 4)
+//
+//        val numbers = (1..4).toList()
+//        val randomNumbers = numbers.shuffled().take(1)
+
 
         when (v?.id) {
 
@@ -81,6 +94,8 @@ class Quiz : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.btn_submit -> {
+
+
 
                 if (mSelectedOptionPosition == 0) {
 
@@ -136,6 +151,14 @@ class Quiz : AppCompatActivity(), View.OnClickListener {
      * A function for setting the question to UI components.
      */
     private fun setQuestion() {
+
+        val ll=findViewById<LinearLayout>(R.id.quizlayout)
+        val RandomColor= mapOf(0 to "PURPLE", 1 to "RED",2 to "BLUE",3 to "YELLOW",4 to "CYAN", 5 to "GRAY", 6 to "GREEN", 7 to "MAGENTA", 8 to "TRANSPARENT")
+        val list = listOf(1, 2, 3, 4, 5, 6, 7, 8)
+        val randomIndex = Random.nextInt(list.size);
+        val randomElement:String = RandomColor[randomIndex].toString()
+        Log.d("QUIZ", "Color is $randomElement")
+        ll.setBackgroundColor(Color.parseColor(randomElement))
 
         val question = mQuestionsList!!.get(mCurrentPosition - 1) // Getting the question from the list with the help of current position.
 

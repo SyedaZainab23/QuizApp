@@ -148,7 +148,7 @@ object Generate {
 //        }
         synchronized(this)
         {
-            val numbers = (1..15).toList()
+            val numbers = (0..14).toList()
             val randomNumbers = numbers.shuffled().take(4)
 //        val randomQuestions= Collections.synchronizedList(java.util.ArrayList(),Question)
             val randomQuestions = ArrayList<Question>()
