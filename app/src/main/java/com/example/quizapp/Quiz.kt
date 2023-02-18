@@ -3,27 +3,35 @@ package com.example.quizapp
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.quiz.*
 
 class Quiz : AppCompatActivity(), View.OnClickListener {
-
+    private lateinit var mediaPlayer: MediaPlayer
     private var mCurrentPosition: Int = 1 // Default and the first question position
     private var mQuestionsList: ArrayList<Question>? = null
 
     private var mSelectedOptionPosition: Int = 0
     private var mCorrectAnswers: Int = 0
+    private var color = getColor()
 
+    private fun getColor(): Int {
+        return (Math.random() * 16777215).toInt() or (0xFF shl 24)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //This call the parent constructor
         super.onCreate(savedInstanceState)
         // This is used to align the xml view to this class
         setContentView(R.layout.quiz)
+        val activityView = this.findViewById<ScrollView>(R.id.GameLayout)
+        activityView.setBackgroundColor(getColor())
 
         // TODO (STEP 4: Get the NAME from intent and assign it the variable.)
         // START
@@ -38,7 +46,32 @@ class Quiz : AppCompatActivity(), View.OnClickListener {
         tv_option_three.setOnClickListener(this)
         tv_option_four.setOnClickListener(this)
         btn_submit.setOnClickListener(this)
-    }
+    // Initialize the media player and set the audio file
+    mediaPlayer = MediaPlayer.create(this, R.raw.background_music)
+
+    // Start playing the audio
+    mediaPlayer.start()
+
+    // Set the audio to play continuously
+    mediaPlayer.isLooping = true
+}
+
+override fun onPause() {
+    super.onPause()
+    mediaPlayer.pause()
+}
+
+override fun onResume() {
+    super.onResume()
+    mediaPlayer.start()
+}
+
+override fun onDestroy() {
+    super.onDestroy()
+    mediaPlayer.release()
+}
+
+
 
     override fun onClick(v: View?) {
 
@@ -108,6 +141,7 @@ class Quiz : AppCompatActivity(), View.OnClickListener {
                     } else {
                         btn_submit.text = "GO TO NEXT QUESTION"
 
+
                     }
 
                     mSelectedOptionPosition = 0
@@ -129,6 +163,9 @@ class Quiz : AppCompatActivity(), View.OnClickListener {
             btn_submit.text = "FINISH"
         } else {
             btn_submit.text = "SUBMIT"
+            val color = getColor()
+            val view = this.findViewById<ScrollView>(R.id.GameLayout)
+            view.setBackgroundColor(color)
         }
 
         progressBar.progress = mCurrentPosition

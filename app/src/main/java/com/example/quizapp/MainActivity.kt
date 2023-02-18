@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-
 private lateinit var mediaPlayer: MediaPlayer
 
 override fun onCreate(savedInstanceState: Bundle?) {
