@@ -3,6 +3,7 @@ package com.example.quizapp
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import android.widget.ScrollView
@@ -14,7 +15,7 @@ import kotlinx.android.synthetic.main.quiz.*
 class Quiz : AppCompatActivity(), View.OnClickListener {
     private var mCurrentPosition: Int = 1 // Default and the first question position
     private var mQuestionsList: ArrayList<Question>? = null
-
+    private lateinit var mediaPlayer: MediaPlayer
     private var mSelectedOptionPosition: Int = 0
     private var mCorrectAnswers: Int = 0
     private var color = getColor()
@@ -44,6 +45,14 @@ class Quiz : AppCompatActivity(), View.OnClickListener {
         tv_option_three.setOnClickListener(this)
         tv_option_four.setOnClickListener(this)
         btn_submit.setOnClickListener(this)
+        // Initialize the media player and set the audio file
+        mediaPlayer = MediaPlayer.create(this, R.raw.background_music)
+
+        // Start playing the audio
+        mediaPlayer.start()
+
+        // Set the audio to play continuously
+        mediaPlayer.isLooping = true
 }
 
 
@@ -229,4 +238,19 @@ class Quiz : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
+    override fun onPause() {
+        super.onPause()
+        mediaPlayer.pause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mediaPlayer.start()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer.release()
+    }
+
 }
