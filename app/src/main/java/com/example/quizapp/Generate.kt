@@ -1,10 +1,4 @@
 package com.example.quizapp
-
-import android.util.Log
-import java.util.Collections
-import java.util.Collections.synchronizedList
-import kotlin.math.log
-
 object Generate {
 
     // TODO (STEP 1: Create a constant variables which we required in the result screen.)
@@ -15,7 +9,6 @@ object Generate {
 
     fun getQuestions(): ArrayList<Question> {
         val questionsList = ArrayList<Question>()
-
         // 1
         val que1 = Question(
             1, "What country does this flag belong to?",
