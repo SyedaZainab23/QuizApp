@@ -120,6 +120,17 @@ object Generate {
         "A puppet","A ventriloquist dummy","A clown doll","A nesting doll",2)
         val que15=Question(15,"Who did the cat in The Godfather belong to?",R.drawable.godfather,
         "Francis Ford Coppola","Diane Keaton","Al Pachino","No one—the cat was a stray",4)
+        val que16=Question(16,"What year was the first Die Hard movie released?",R.drawable.die_hard,
+        "1986","1988","1990","1991",2)
+        val que17=Question(17,"Which actress has the most Oscar wins?",R.drawable.oscar,
+        "Katharine Hepburn","Meryl Streep","Ingrid Bergman","Elizabeth Taylor",1)
+        val que18=Question(18,"WHAT IS THE HIGHEST GROSSING MOVIE OF ALL TIME?",R.drawable.moneymovie,
+        "Avengers: Endgame","Titanic","Avatar","Gone with the Wind",3)
+        val que19=Question(19,"WHAT COLOR PILL DOES NEO TAKE IN THE MATRIX?",R.drawable.pill,
+        "Blue","Red","Black","Orange",2)
+        val que20= Question(20,"Dracula was filmed in English during the day, and in what other language at night?",
+        R.drawable.drac,"German","Swedish","French","Spanish",4)
+
 
 
 
@@ -129,6 +140,12 @@ object Generate {
         questionsList.add(que13)
         questionsList.add(que14)
         questionsList.add(que15)
+        questionsList.add(que16)
+        questionsList.add(que17)
+        questionsList.add(que18)
+        questionsList.add(que19)
+        questionsList.add(que20)
+
 
 //        var i:Int=0
 //        var x="que"
@@ -141,7 +158,7 @@ object Generate {
 //        }
         synchronized(this)
         {
-            val numbers = (0..14).toList()
+            val numbers = (0..19).toList()
             val randomNumbers = numbers.shuffled().take(4)
 //        val randomQuestions= Collections.synchronizedList(java.util.ArrayList(),Question)
             val randomQuestions = ArrayList<Question>()

@@ -7,6 +7,7 @@ import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -171,6 +172,7 @@ class Quiz : AppCompatActivity(), View.OnClickListener {
      */
     private fun setQuestion() {
 
+//        val ll=findViewById<LinearLayout>(R.id.quizlayout)
         val ll=findViewById<LinearLayout>(R.id.quizlayout)
         val RandomColor= mapOf(0 to "PURPLE", 1 to "RED",2 to "BLUE",3 to "YELLOW",4 to "CYAN", 5 to "GRAY", 6 to "GREEN", 7 to "MAGENTA", 8 to "TRANSPARENT")
         val list = listOf(1, 2, 3, 4, 5, 6, 7, 8)
