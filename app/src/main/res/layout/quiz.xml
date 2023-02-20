@@ -34,12 +34,12 @@
 
         <ImageView
             android:id="@+id/iv_image"
-            android:layout_width="161dp"
-            android:layout_height="46dp"
+            android:layout_width="353dp"
+            android:layout_height="132dp"
             android:layout_marginTop="16dp"
             android:contentDescription="image"
-            tools:src="@drawable/ic_flag_of_germany"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText"
+            tools:src="@drawable/ic_flag_of_germany" />
 
         <LinearLayout
             android:id="@+id/ll_progress_details"
